@@ -1,174 +1,197 @@
-</html>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <title>マッチングアプリ／医師人数クイズ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-   body {
-  font-family: 'Poppins', sans-serif; /* Google Fonts を使うなら @import も追加 */
-  background-color: #fafafa;
-  color: #333;
-  margin: 20px;
-  line-height: 1.6;
-}
-
-h1 {
-  color: #1a4d7a;
-  font-size: 2.4em;
-  margin-bottom: 0.5em;
-}
-
-h2 {
-  color: #1a4d7a;
-  font-size: 1.6em;
-  margin-top: 1.5em;
-  margin-bottom: 0.8em;
-}
-
-.intro {
-  background: #eef8ff;
-  padding: 30px 20px;
-  margin-bottom: 40px;
-  border-radius: 10px;
-}
-
-.section {
-  margin-bottom: 50px;
-}
-
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  margin-bottom: 30px;
-}
-
-.chart-container {
-  max-width: 600px;
-  margin: 0 auto 40px;
-}
-
-@media (max-width: 600px) {
-  body {
-    margin: 10px;
-  }
-  h1 { font-size: 2em; }
-  h2 { font-size: 1.4em; }
-}
-
+    :root {
+      --main-color: #1a4d7a;
+      --accent-color: #2c3e50;
+      --background-light: #f7f9fc;
+      --text-dark: #333;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--background-light);
+      color: var(--text-dark);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      color: var(--main-color);
+      font-size: 2.4em;
+      text-align: center;
+      margin-bottom: 1em;
+    }
+    h2 {
+      color: var(--main-color);
+      font-size: 1.7em;
+      margin-top: 1.5em;
+      margin-bottom: 0.8em;
+    }
+    .intro {
+      background: #eef8ff;
+      padding: 30px 20px;
+      margin-bottom: 40px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+      animation: fadeUp 0.6s ease-in-out;
+    }
+    .section {
+      margin-bottom: 50px;
+    }
+    .info-card {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      margin-bottom: 40px;
+      animation: fadeUp 0.6s ease-in-out;
+    }
+    .section-icon {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .section-icon img {
+      width: 30px;
+      height: 30px;
+    }
+    .quiz-menu ul {
+      list-style: none;
+      padding: 0;
+    }
+    .quiz-menu li {
+      margin-bottom: 12px;
+    }
+    .quiz-menu a {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: var(--accent-color);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+    .quiz-menu a:hover {
+      background-color: #163f66;
+      transform: scale(1.02);
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .back-link a {
+      color: var(--main-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+    }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
   <h1>マッチングアプリ／医師人数クイズ</h1>
 
   <div class="intro">
-    <p>
+    <p style="font-size:1.3em; line-height:1.5;">
       「“マッチングアプリに登録している医師の数が、実際の医師数を超えているらしい”――そんな <strong>噂</strong> からこのサイトは始まりました。調べてみると見えてきた意外な実態、そんな噂・マッチングアプリの世界をデータでひもときます。」
     </p>
   </div>
 
   <div class="section">
-    <h2>調べてわかったこと</h2>
-    <p>
-      まず、マッチングアプリについて調査しました。
-    </p>
-    <p>
-      ・「Pairs」というアプリの公開情報では、医師が <strong>9,999人以上</strong> 登録しているという記載がありました。登録人数は約2000万人という情報も確認できました。  
-    </p>
-    <p>
-      ・また、「Omiai」というアプリでは、医師・歯科医師が <strong>433人（条件付きで1,255人）</strong>という文献が確認されました。  
-      他のアプリには、医師数を明確に記載したものは見つかりませんでした。
-    </p>
-    <p>
-      次に日本の医師数と生産年齢人口について調べると、令和4年12月31日時点で全国の届出票による医師数は <strong>343,275人</strong> です。そして、生産年齢人口（15～64歳）はおおよそ <strong>73,522,000人</strong> という数字が出ています。  
-    </p>
-    <p>
-      これを元にざっくり計算すると、日本の生産年齢人口における医師の割合は約 <strong>0.47％</strong> となります（実際には65歳以上も含まれるため、もう少し小さくなる可能性がありますが、今回はこれで話を進めていきます）。  
-    </p>
-    <p>
-      ここで、アプリの会員数における医師の割合を試算してみます。  
-      pairsの会員数を約2,000万人、医師数を約1万人、omiaiの会員数を約1000万人、医師数を1000人と仮定してみます。  
-    </p>
-      <p>
-    めちゃくちゃ適当ですが、何となく人数がわかっている2件のアプリを合算して計算してみます。
-      </p>
-    <p>
-    「登録者数約2,000万人＋約1,000万人＝約3,000万人」のアプリ2件を合算し、重複登録を仮に8割と想定して“実質母数”を約2,200万人とした場合でも、  
-    <strong>10,000〜11,000人 ÷ 22,000,000人 ≒ 約0.045〜0.05％</strong>となることがわかりました。
-  </p>
+    <div class="info-card">
+      <div class="section-icon">
+        <img src="doctor-icon.svg" alt="医師アイコン">
+        <h2>調べてわかったこと</h2>
+      </div>
+      <p>まず、マッチングアプリについて調査しました。</p>
+      <p>・「Pairs」というアプリの公開情報では、医師が <strong>9,999人以上</strong> 登録しているという記載がありました。登録人数は約2,000万人という情報も確認できました。</p>
+      <p>・また、「Omiai」というアプリでは、医師・歯科医師が <strong>433人（条件付きで1,255人）</strong>という文献が確認されました。他のアプリには、医師数を明確に記載したものは見つかりませんでした。</p>
+      <p>次に日本の医師数と生産年齢人口について調べると、令和4年12月31日時点で全国の届出票による医師数は <strong>343,275人</strong> です。そして、生産年齢人口（15〜64歳）はおおよそ <strong>73,522,000人</strong> という数字が出ています。</p>
+      <p>これを元にざっくり計算すると、日本の生産年齢人口における医師の割合は約 <strong>0.47％</strong> となります（実際には65歳以上も含まれるためもう少し異なる可能性があります）。</p>
+      <p>ここで、アプリの会員数における医師の割合を試算してみます。例として、登録者数を約2,000万人、医師数を約1万人と仮定しました。さらに「登録者数約2,000万人＋約1,000万人＝約3,000万人」を仮定し、重複登録を仮に8割と想定して“実質母数”を約2,200万人とした場合でも、<strong>10,000〜11,000人 ÷ 22,000,000人 ≒ 約0.045〜0.05％</strong>となることがわかりました。</p>
+    </div>
+
+    <div class="info-card">
+      <div class="section-icon">
+        <img src="question-icon.svg" alt="出会う確率アイコン">
+        <h2>さらに深掘り：“出会う確率”の観点から</h2>
+      </div>
+      <p>そもそも、マッチングアプリに登録している人の多くは、年齢制限や利用規定の関係から、ほぼすべてが「15〜64歳」の範囲＝いわゆる生産年齢人口に属すると考えて差し支えないでしょう。</p>
+      <p>そこで考えてみると、街中で“生産年齢人口（15〜64歳）”の人と出会ったとき、その人が医師である確率がおよそ <strong>0.47％</strong> であるのに対し、マッチングアプリ登録者内で医師であると仮定した確率は約 <strong>0.05％</strong>。つまり、登録している母数が限定されているマッチングアプリの中で医師に出会う可能性は、普段街中でランダムに人と出会いその人が医師である可能性よりも、むしろ <strong>低い可能性があります</strong>。</p>
+      <p>このように比較してみると、あの「マッチングアプリに医師がたくさんいるらしい」という <strong>噂</strong> を、数字という形で読み解くことが可能になります。もちろん、この数値には仮定が含まれており、実際の登録医師数を確定的に示すものではありませんが、“出会う確率”としての視点を提供してくれます。</p>
+    </div>
   </div>
-  
 
-<div class="section">
-  <h2>さらに深掘り：“出会う確率”の観点から</h2>
-  <p>
-    そもそも、マッチングアプリに登録している人の多くは、年齢制限や利用規定の関係から、ほぼすべてが「15〜64歳」の範囲＝いわゆる生産年齢人口に属すると考えて差し支えないでしょう。
-  </p>
-  <p>
-    そこで考えてみると、街中で“生産年齢人口（15〜64歳）”の人と出会ったとき、その人が医師である確率がおよそ <strong>0.47％</strong> であるのに対し、マッチングアプリ登録者の中で医師であると仮定した確率は約 <strong>0.05％</strong>となります。 
-    つまり、登録している母数が限定されているマッチングアプリの中で医師に出会う可能性は、普段街中でランダムに人と出会いその人が医師である可能性よりも、むしろ <strong>低い可能性があります</strong>
-  </p>
-  <p>
-    ということは、あなたが医師と出会いたいと思ったら、マッチングアプリで一人一人本物か探すより、道端で適齢期の方を片っ端から捕まえて聞く方が約10倍も医師である可能性が高いということになります。
-    そもそもそこまでするほど魅力的な職業なのか？という疑問は残りますが…
-  </p>
-  <p>
-    このように比較してみると、あの「マッチングアプリに医師がたくさんいるらしい」という<strong>噂</strong>を、数字という形で読み解くことが可能になります。もちろん、この数値には仮定が含まれており、実際の登録医師数を確定的に示すものではありませんが、“出会う確率”としての視点を提供してくれます。
-  </p>
-</div>
+  <div class="section quiz-menu">
+    <h2>クイズメニュー</h2>
+    <ul>
+      <li><a href="quiz1.html">Quiz1：マルチチョイス形式</a></li>
+      <li><a href="quiz2.html">Quiz2：True／False形式</a></li>
+      <li><a href="quiz3.html">Quiz3：計算＆穴埋め形式</a></li>
+    </ul>
+  </div>
 
-<div class="section chart-container">
-  <h2>割合の比較グラフ</h2>
-  <canvas id="myChart"></canvas>
-</div>
+  <div class="section chart-container">
+    <h2>割合の比較グラフ</h2>
+    <canvas id="myChart"></canvas>
+  </div>
 
-<div class="section">
-  <h2>クイズメニュー</h2>
-  <ul>
-    <li><a href="quiz1.html">Quiz1：マルチチョイス形式</a></li>
-    <li><a href="quiz2.html">Quiz2：True／False形式</a></li>
-    <li><a href="quiz3.html">Quiz3：計算・穴埋め形式</a></li>
-  </ul>
-</div>
-
-  
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  const ctx = document.getElementById('myChart').getContext('2d');
-  const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: [
-        'アプリ登録者内 医師割合（約0.05％）',
-        '生産年齢人口内 医師割合（約0.47％）'
-      ],
-      datasets: [{
-        label: '割合（％）',
-        data: [0.05, 0.47],
-        backgroundColor: ['#2c3e50', '#e74c3c']
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 1
-        }
+  <script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['アプリ登録者内 医師割合（約0.05％）', '生産年齢人口内 医師割合（約0.47％）'],
+        datasets: [{
+          label: '割合（％）',
+          data: [0.05, 0.47],
+          backgroundColor: ['#2c3e50', '#e74c3c']
+        }]
       },
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              return context.parsed.y.toFixed(2) + '%';
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 1
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.parsed.y.toFixed(2) + '%';
+              }
             }
           }
         }
       }
-    }
-  });
-</script>
+    });
+  </script>
 
 </body>
 </html>
