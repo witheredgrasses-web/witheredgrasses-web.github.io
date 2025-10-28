@@ -88,11 +88,9 @@
 <body>
   <h1>Quiz2：True／False 医師×マッチングアプリ</h1>
   <div class="quiz-container">
-    <div class="progress">1／1問目</div>
-    <div class="question-box">
-      <p><strong>Q1．</strong> 街中で出会った生産年齢人口（15〜64歳）の人が医師である確率は、約0.05％である。True or False？</p>
-      <button class="choice-button" onclick="checkAnswer('True')">True</button>
-      <button class="choice-button" onclick="checkAnswer('False')">False</button>
+    <div class="progress" id="progress">1／3問目</div>
+    <div class="question-box" id="questionBox">
+      <!-- 質問内容は JS で切り替え -->
     </div>
     <div id="result" class="result"></div>
     <div class="back-link">
@@ -101,15 +99,68 @@
   </div>
 
   <script>
-    function checkAnswer(choice) {
-      let resultText = '';
-      if (choice === 'False') {
-        resultText = '✅ 正解！約0.05％ではなく、約0.47％が実際の確率です。';
-      } else {
-        resultText = '❌ 残念！正解は False です。約0.47％が実際の確率です。';
+    const questions = [
+      {
+        text: '街中で出会った生産年齢人口（15〜64歳）の人が医師である確率は、約0.05％である。True or False？',
+        answer: 'False'
+      },
+      {
+        text: 'マッチングアプリ登録者内で医師であると仮定した確率は約0.47％である。True or False？',
+        answer: 'False'
+      },
+      {
+        text: '登録者数約2,200万人・医師数約10,000人と仮定した場合、医師割合は約0.045〜0.05％となる。True or False？',
+        answer: 'True'
       }
-      document.getElementById('result').innerText = resultText;
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion() {
+      const q = questions[current];
+      document.getElementById('progress').innerText = (current+1) + '／' + questions.length + '問目';
+      const box = document.getElementById('questionBox');
+      box.innerHTML = '<p><strong>Q'+(current+1)+'．</strong> '+ q.text +'</p>' +
+        '<button class="choice-button" onclick="selectAnswer(\'True\')">True</button>' +
+        '<button class="choice-button" onclick="selectAnswer(\'False\')">False</button>';
+      document.getElementById('result').innerText = '';
     }
+
+    function selectAnswer(choice) {
+      if (choice === questions[current].answer) {
+        score++;
+        document.getElementById('result').innerText = '✅ 正解！';
+      } else {
+        document.getElementById('result').innerText = '❌ 残念！正解は「'+ questions[current].answer +'」です。';
+      }
+      current++;
+      setTimeout(function(){
+        if (current < questions.length) {
+          showQuestion();
+        } else {
+          showResult();
+        }
+      }, 1000);
+    }
+
+    function showResult() {
+      const box = document.getElementById('questionBox');
+      box.innerHTML = '<p>あなたの正解数： '+ score +' ／ '+ questions.length +'</p>' +
+                      '<p>正答率： '+ ((score/questions.length)*100).toFixed(1) +'％</p>' +
+                      '<button class="choice-button" onclick="restartQuiz()">もう一回挑戦する</button>' +
+                      '<button class="choice-button" onclick="location.href=\'index.html\'">他のクイズへ</button>';
+      localStorage.setItem('quiz2Result', JSON.stringify({ date: new Date().toISOString(), score: score }));
+    }
+
+    function restartQuiz() {
+      current = 0;
+      score = 0;
+      showQuestion();
+    }
+
+    // 初期表示
+    showQuestion();
   </script>
 </body>
 </html>
