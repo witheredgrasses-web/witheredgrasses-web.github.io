@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz2：医師×マッチングアプリ True／False</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+      background-color: #fafafa;
+      color: #333;
+    }
+    h1 { color: #1a4d7a; font-size: 1.8em; }
+    .question-box {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      margin-bottom: 20px;
+    }
+    .choice-button {
+      display: inline-block;
+      padding: 12px 20px;
+      margin: 10px 10px 0 0;
+      background-color: #2c3e50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .choice-button:hover {
+      background-color: #163f66;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .back-link {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Quiz2：医師×マッチングアプリ True／False</h1>
+
+  <div class="question-box">
+    <p><strong>Q1．</strong> 街中で出会った生産年齢人口（15〜64歳）の人が医師である確率は、約0.05％である。True か False か？</p>
+    <button class="choice-button" onclick="checkAnswer('True')">True</button>
+    <button class="choice-button" onclick="checkAnswer('False')">False</button>
+    <div id="result" class="result"></div>
+  </div>
+
+  <div class="back-link">
+    <a href="index.html">&larr; メニューに戻る</a>
+  </div>
+
+  <script>
+    function checkAnswer(choice) {
+      let resultText = '';
+      // 正解は False（0.47%が正しい数値なので）
+      if (choice === 'False') {
+        resultText = '正解！約0.05％ではなく、約0.47％が正しい確率です。';
+      } else {
+        resultText = '残念！正解は False です。約0.47％が正しい確率です。';
+      }
+      document.getElementById('result').innerText = resultText;
+    }
+  </script>
+</body>
+</html>
 
