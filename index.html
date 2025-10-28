@@ -15,112 +15,222 @@
       color: #2c3e50;
       font-size: 2.2em;
     }
-    /* キャッチフレーズスタイル */
     .intro {
       background: #eef8ff;
       padding: 20px;
       margin-bottom: 30px;
       border-radius: 8px;
     }
-    .intro p {
-      font-size: 1.3em;
-      line-height: 1.5;
-    }
-    /* テーブルスタイル */
-    .data-table {
-      width: 100%;
-      max-width: 800px;
-      margin-bottom: 30px;
-      border-collapse: collapse;
-    }
-    .data-table th,
-    .data-table td {
-      border: 1px solid #ccc;
-      padding: 12px 10px;
-      text-align: left;
-    }
-    .data-table th {
-      background-color: #2c3e50;
-      color: white;
-    }
-    .data-table tr:nth-child(odd) {
-      background-color: #f8f8f8;
-    }
-    /* レスポンシブ対応：テーブルが狭い画面では横スクロール */
-    .table-container {
-      overflow-x: auto;
+    .section {
       margin-bottom: 30px;
     }
-    /* クイズスタイル */
-    .quiz-question {
-      background: #f0f0f0;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 5px;
+    .chart-container {
+      max-width: 600px;
+      margin: 0 auto 40px;
     }
   </style>
 </head>
 <body>
   <h1>マッチングアプリ／医師人数クイズ</h1>
 
-  <!-- 冒頭キャッチフレーズ -->
   <div class="intro">
     <p>
       「“マッチングアプリに登録している医師の数が、実際の医師数を超えているらしい”――そんな <strong>噂</strong> からこのサイトは始まりました。調べてみると見えてきた意外な実態、そんな噂・マッチングアプリの世界をデータでひもときます。」
     </p>
   </div>
 
-  <h2>掲載データ</h2>
-  <div class="table-container">
-    <table class="data-table">
-      <tr>
-        <th>アプリ名</th>
-        <th>会員数／医師数に関する言及</th>
-        <th>備考</th>
-      </tr>
-      <tr>
-        <td>Pairs（ペアーズ）</td>
-        <td>「職業検索で医師を出すと9,999人以上」という記載あり。※</td>
-        <td>「以上」という表現で、具体的な上限・時点・条件不明。</td>
-      </tr>
-      <tr>
-        <td>Omiai（オミアイ）</td>
-        <td>「職業検索で『医師・歯科医師』が433人」「条件付きで1,255人」という古い調査あり。</td>
-        <td>調査時期（2019年）古く、自己申告職業で真偽不明。</td>
-      </tr>
-      <tr>
-        <td>他（with、タップルなど）</td>
-        <td>医師登録者数について明確な数値データ見つからず。</td>
-        <td>「医師が多そう」「母数が大きい」等の記述のみ。</td>
-      </tr>
-    </table>
+  <div class="section">
+    <h2>調べてわかったこと</h2>
+    <p>
+      まず、マッチングアプリについて調査しました。  
+      ・「Pairs」というアプリの公開情報では、医師が <strong>9,999人以上</strong> 登録しているという記載がありました。:contentReference[oaicite:1]{index=1}  
+    </p>
+    <p>
+      また、「Omiai」というアプリでは、医師・歯科医師が <strong>433人（条件付きで1,255人）</strong>という文献が確認されました。  
+      他のアプリには、医師数を明確に記載したものは見つかりませんでした。
+    </p>
+    <p>
+      次に日本の医師数と生産年齢人口について調べると、令和4年12月31日時点で全国の届出票による医師数は <strong>343,275人</strong> です。そして、生産年齢人口（15～64歳）はおおよそ <strong>73,522,000人</strong> という数字が出ています。  
+    </p>
+    <p>
+      これを元にざっくり比較すると、日本の生産年齢人口における医師の割合は約 <strong>0.47％</strong> となります（実際には65歳以上も含まれるため、もう少し大きくなる可能性があります）。  
+    </p>
+    <p>
+      さらに、「ペアーズ」の会員数における医師数の割合を試算しました。  
+      会員数を約2,000万人、医師数を約1万人と仮定すると、登録者における医師の割合が比較可能になります。Omiaiについても同様に概算しました。  
+    </p>
   </div>
 
-  <h2>日本の医師数と生産年齢人口</h2>
-  <ul>
-    <li>医師数：令和4年12月31日時点で全国の届出票による医師数は <strong>343,275人</strong>。</li>
-    <li>生産年齢人口（15〜64歳）：2025年1月1日現在で <strong>約73,522,000人</strong>（総務省推計）</li>
-  </ul>
-
-  <h2>比較（割合ベース）</h2>
-  <ul>
-    <li>Pairs：会員数 約2,000万人／総登録母数（日本人口 約1億2,380万人） → 約 <strong>16.2％</strong></li>
-    <li>Omiai：会員数 約1,000万人／同母数 → 約 <strong>8.1％</strong></li>
-    <li>医師：医師数 343,275人／生産年齢人口 約73,522,000人 → 約 <strong>0.47％</strong></li>
-  </ul>
-
-  <h2>クイズ！</h2>
-  <div class="quiz-question">
-    <p><strong>Q1．</strong> Pairsの会員数「約2,000万人」は、日本の総人口（約1億2,380万人）のおよそ何％でしょう？</p>
-  </div>
-  <div class="quiz-question">
-    <p><strong>Q2．</strong> 日本国内の医師数「343,275人」は、生産年齢人口（約73,522,000人）のおよそ何％でしょう？</p>
+  <div class="section chart-container">
+    <h2>割合の比較グラフ</h2>
+    <canvas id="myChart"></canvas>
   </div>
 
-  <h2>答えと解説</h2>
-  <p>・Q1の答え：およそ16.2％です。</p>
-  <p>・Q2の答え：およそ0.47％（四捨五入すると0.5％未満）です。</p>
-  <p>このことから、マッチングアプリの登録者数の割合が、医師の割合よりもかなり高いことがわかります。※ただし、アプリ登録者全体が医師を含んでいるか・登録職業の内訳がどうかは別に確認が必要です。</p>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Pairs 医師割合（約1万人／2000万人）', 'Omiai 医師割合（約1000人／1000万人）', '医師の実数割合（343,275人／73,522,000人）'],
+        datasets: [{
+          label: '割合（％）',
+          data: [ (10000/20000000)*100, (1000/10000000)*100, (343275/73522000)*100 ],
+          backgroundColor: ['#2c3e50', '#34495e', '#e74c3c'],
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 2
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.parsed.y.toFixed(2) + '%';
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+  <div class="section">
+    <h2>クイズ！</h2>
+    <div style="background:#f0f0f0; padding:15px; margin-bottom:10px; border-radius:5px;">
+      <p><strong>Q1．</strong> 「ペアーズ」の会員数における医師の割合は、ざっくり何％でしょう？</p>
+    </div>
+    <div style="background:#f0f0f0; padding:15px; margin-bottom:10px; border-radius:5px;">
+      <p><strong>Q2．</strong> 日本の医師数が生産年齢人口に占める割合は、ざっくり何％でしょう？</p>
+    </div>
+
+    <h3>答えと解説</h3>
+    <p>・Q1の答え：およそ <strong>0.05％</strong>（1万人／2,000万人）です。</p>
+    <p>・Q2の答え：およそ <strong>0.47％</strong>です。</p>
+    <p>この比較から、「登録会員における医師の割合」と「生産年齢人口における医師の割合」を並べて考えることで、“医師がマッチングアプリに登録する傾向”について視点が得られます。ただし、医師会員数の仮定には限界があるため、あくまで“おおまかな比較”です。</p>
+  </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>マッチングアプリ／医師人数クイズ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+      background-color: #fafafa;
+      color: #333;
+    }
+    h1 {
+      color: #2c3e50;
+      font-size: 2.2em;
+    }
+    .intro {
+      background: #eef8ff;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .chart-container {
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+  </style>
+</head>
+<body>
+  <h1>マッチングアプリ／医師人数クイズ</h1>
+
+  <div class="intro">
+    <p>
+      「“マッチングアプリに登録している医師の数が、実際の医師数を超えているらしい”――そんな <strong>噂</strong> からこのサイトは始まりました。調べてみると見えてきた意外な実態、そんな噂・マッチングアプリの世界をデータでひもときます。」
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>調べてわかったこと</h2>
+    <p>
+      まず、マッチングアプリについて調査しました。  
+      ・「Pairs」というアプリの公開情報では、医師が <strong>9,999人以上</strong> 登録しているという記載がありました。:contentReference[oaicite:1]{index=1}  
+    </p>
+    <p>
+      また、「Omiai」というアプリでは、医師・歯科医師が <strong>433人（条件付きで1,255人）</strong>という文献が確認されました。  
+      他のアプリには、医師数を明確に記載したものは見つかりませんでした。
+    </p>
+    <p>
+      次に日本の医師数と生産年齢人口について調べると、令和4年12月31日時点で全国の届出票による医師数は <strong>343,275人</strong> です。そして、生産年齢人口（15～64歳）はおおよそ <strong>73,522,000人</strong> という数字が出ています。  
+    </p>
+    <p>
+      これを元にざっくり比較すると、日本の生産年齢人口における医師の割合は約 <strong>0.47％</strong> となります（実際には65歳以上も含まれるため、もう少し大きくなる可能性があります）。  
+    </p>
+    <p>
+      さらに、「ペアーズ」の会員数における医師数の割合を試算しました。  
+      会員数を約2,000万人、医師数を約1万人と仮定すると、登録者における医師の割合が比較可能になります。Omiaiについても同様に概算しました。  
+    </p>
+  </div>
+
+  <div class="section chart-container">
+    <h2>割合の比較グラフ</h2>
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Pairs 医師割合（約1万人／2000万人）', 'Omiai 医師割合（約1000人／1000万人）', '医師の実数割合（343,275人／73,522,000人）'],
+        datasets: [{
+          label: '割合（％）',
+          data: [ (10000/20000000)*100, (1000/10000000)*100, (343275/73522000)*100 ],
+          backgroundColor: ['#2c3e50', '#34495e', '#e74c3c'],
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 2
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.parsed.y.toFixed(2) + '%';
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+  <div class="section">
+    <h2>クイズ！</h2>
+    <div style="background:#f0f0f0; padding:15px; margin-bottom:10px; border-radius:5px;">
+      <p><strong>Q1．</strong> 「ペアーズ」の会員数における医師の割合は、ざっくり何％でしょう？</p>
+    </div>
+    <div style="background:#f0f0f0; padding:15px; margin-bottom:10px; border-radius:5px;">
+      <p><strong>Q2．</strong> 日本の医師数が生産年齢人口に占める割合は、ざっくり何％でしょう？</p>
+    </div>
+
+    <h3>答えと解説</h3>
+    <p>・Q1の答え：およそ <strong>0.05％</strong>（1万人／2,000万人）です。</p>
+    <p>・Q2の答え：およそ <strong>0.47％</strong>です。</p>
+    <p>この比較から、「登録会員における医師の割合」と「生産年齢人口における医師の割合」を並べて考えることで、“医師がマッチングアプリに登録する傾向”について視点が得られます。ただし、医師会員数の仮定には限界があるため、あくまで“おおまかな比較”です。</p>
+  </div>
 
 </body>
 </html>
