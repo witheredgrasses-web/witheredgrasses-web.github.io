@@ -34,10 +34,6 @@
       margin-bottom: 20px;
     }
     .question-box {
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
       margin-bottom: 20px;
     }
     input[type="text"] {
@@ -96,45 +92,79 @@
 <body>
   <h1>Quiz3：計算＆穴埋め 医師割合を考える</h1>
   <div class="quiz-container">
-    <div class="progress">1／2問目</div>
-    <div class="question-box">
-      <p><strong>Q1．</strong> 日本の医師数：343,275人<br>
-      生産年齢人口（15〜64歳）：73,522,000人<br>
-      医師数 ÷ 生産年齢人口 ×100 = <input type="text" id="input1" placeholder="％で入力">％</p>
-      <p><strong>Q2．</strong> 登録者数約3,000万人（アプリ2件合算）<br>
-      医師数約10,000〜11,000人<br>
-      医師数 ÷ 実質母数約22,000,000人 ×100 = <input type="text" id="input2" placeholder="％で入力">％</p>
-      <button class="submit-button" onclick="checkAnswers()">答えを見る</button>
-      <div id="result" class="result"></div>
+    <div class="progress" id="progress">1／2問目</div>
+    <div class="question-box" id="questionBox">
+      <!-- 入力問題を JS で切り替え -->
     </div>
+    <div id="result" class="result"></div>
     <div class="back-link">
       <a href="index.html">&larr; メニューに戻る</a>
     </div>
   </div>
 
   <script>
-    function checkAnswers() {
-      const ans1 = parseFloat(document.getElementById('input1').value);
-      const ans2 = parseFloat(document.getElementById('input2').value);
-      let msg = '';
-
-      const correct1 = (343275 / 73522000) * 100;
-      const correct2 = (10000 / 22000000) * 100;
-
-      if (Math.abs(ans1 - correct1) < 0.1) {
-        msg += '✅ Q1：正解に近い！約 ' + correct1.toFixed(3) + '％です。<br>';
-      } else {
-        msg += '❌ Q1：もう少し！正解は約 ' + correct1.toFixed(3) + '％です。<br>';
+    const questions = [
+      {
+        text: '日本の医師数：343,275人。生産年齢人口（15〜64歳）：73,522,000人。\n医師数 ÷ 生産年齢人口 ×100 = ',
+        correct: (343275 / 73522000) * 100
+      },
+      {
+        text: '登録者数約3,000万人（アプリ2件合算）、医師数約10,000人と仮定。\n医師数 ÷ 実質母数約22,000,000人 ×100 = ',
+        correct: (10000 / 22000000) * 100
       }
+    ];
 
-      if (Math.abs(ans2 - correct2) < 0.01) {
-        msg += '✅ Q2：正解に近い！約 ' + correct2.toFixed(3) + '％です。';
-      } else {
-        msg += '❌ Q2：もう少し！正解は約 ' + correct2.toFixed(3) + '％です。';
-      }
+    let current = 0;
+    let score = 0;
 
-      document.getElementById('result').innerHTML = msg;
+    function showQuestion() {
+      const q = questions[current];
+      document.getElementById('progress').innerText = (current+1) + '／' + questions.length + '問目';
+      const box = document.getElementById('questionBox');
+      box.innerHTML = '<p><strong>Q'+(current+1)+'．</strong> '+ q.text +
+                      '<input type="text" id="inputAnswer" placeholder="％で入力">％</p>' +
+                      '<button class="submit-button" onclick="submitAnswer()">答えを見る</button>';
+      document.getElementById('result').innerText = '';
     }
+
+    function submitAnswer() {
+      const ans = parseFloat(document.getElementById('inputAnswer').value);
+      const correctVal = questions[current].correct;
+      if (!isNaN(ans) && Math.abs(ans - correctVal) < (correctVal * 0.2)) {  // 20%以内誤差OK
+        score++;
+        document.getElementById('result').innerText = '✅ 正解に近いです！約 '+ correctVal.toFixed(3) +'％です。';
+      } else {
+        document.getElementById('result').innerText = '❌ 残念！正解は約 '+ correctVal.toFixed(3) +'％です。';
+      }
+      document.getElementById('questionBox').innerHTML += '<button class="submit-button" onclick="nextQuestion()">次へ</button>';
+    }
+
+    function nextQuestion() {
+      current++;
+      if (current < questions.length) {
+        showQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      const box = document.getElementById('questionBox');
+      box.innerHTML = '<p>あなたの正解数： '+ score +' ／ '+ questions.length +'</p>' +
+                      '<p>正答率： '+ ((score/questions.length)*100).toFixed(1) +'％</p>' +
+                      '<button class="submit-button" onclick="restartQuiz()">もう一回挑戦する</button>' +
+                      '<button class="submit-button" onclick="location.href=\'index.html\'">他のクイズへ</button>';
+      localStorage.setItem('quiz3Result', JSON.stringify({ date: new Date().toISOString(), score: score }));
+    }
+
+    function restartQuiz() {
+      current = 0;
+      score = 0;
+      showQuestion();
+    }
+
+    showQuestion();
   </script>
 </body>
 </html>
+
