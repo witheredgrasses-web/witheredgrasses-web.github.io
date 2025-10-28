@@ -95,21 +95,33 @@
   <canvas id="myChart"></canvas>
 </div>
 
+<h2>クイズ：確認してみよう</h2>
+<div class="quiz-question">
+  <p><strong>Q1．</strong> 次のうち、マッチングアプリ登録者内で医師である確率に最も近いのはどれ？</p>
+  <ol type="A">
+    <li>0.01％</li>
+    <li>0.05％</li>
+    <li>0.47％</li>
+  </ol>
+  <p class="hint">（ヒント：アプリ登録者数約2,000万人、医師数約1万人という仮定）</p>
+</div>
+<div class="quiz-question">
+  <p><strong>Q2．</strong> 街中で出会った生産年齢人口（15〜64歳）の人が医師である確率は、おおよそ何％でしょう？</p>
+  <ol type="A">
+    <li>0.05％</li>
+    <li>0.47％</li>
+    <li>5％</li>
+  </ol>
+  <p class="hint">（ヒント：医師数343,275人、生産年齢人口約73,522,000人）</p>
+</div>
 
-  <div class="section">
-    <h2>クイズ！</h2>
-    <div style="background:#f0f0f0; padding:15px; margin-bottom:10px; border-radius:5px;">
-      <p><strong>Q1．</strong> 「ペアーズ」の会員数における医師の割合は、ざっくり何％でしょう？</p>
-    </div>
-    <div style="background:#f0f0f0; padding:15px; margin-bottom:10px; border-radius:5px;">
-      <p><strong>Q2．</strong> 日本の医師数が生産年齢人口に占める割合は、ざっくり何％でしょう？</p>
-    </div>
+<h3>答えと解説</h3>
+<p>・Q1の答え：B)0.05％です。アプリ登録者数を約2,000万人、医師数を仮に約1万人とした場合の割合です。</p>
+<p>・Q2の答え：B)0.47％です。医師数343,275人÷生産年齢人口約73,522,000人で計算しています。</p>
+<p>この結果から、マッチングアプリの登録者内で医師である割合は、街中で出会う生産年齢人口の中で医師である確率よりも **低い可能性がある** という視点が得られます。ただし、アプリの医師数は明確には公開されておらず、あくまで仮定を使った “ざっくり比較” という点にご注意ください。</p>
 
-    <h3>答えと解説</h3>
-    <p>・Q1の答え：およそ <strong>0.05％</strong>（1万人／2,000万人）です。</p>
-    <p>・Q2の答え：およそ <strong>0.47％</strong>です。</p>
-    <p>この比較から、「登録会員における医師の割合」と「生産年齢人口における医師の割合」を並べて考えることで、“医師がマッチングアプリに登録する傾向”について視点が得られます。ただし、医師会員数の仮定には限界があるため、あくまで“おおまかな比較”です。</p>
-  </div>
+
+  
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   const ctx = document.getElementById('myChart').getContext('2d');
